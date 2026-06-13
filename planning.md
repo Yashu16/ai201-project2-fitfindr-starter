@@ -87,6 +87,14 @@ Agent should tell the user that it doesn't have enough information about the out
 
 **How does your agent decide which tool to call next?**
 <!-- Describe the logic your planning loop uses. What does it look at? What conditions change its behavior? How does it know when it's done? -->
+Check user query, load the wardrobe from the schema/session at the start. 
+**Step 1**: Call search_listings with inputs taken from the query. Once search_listing runs, if the result is empty or is giving an error, then set an error message in this session and return to the user saying, "Sorry, I couldn't find any listings matching your query. You can try a different description or raise your budget."
+
+If no, set selected_item = results[0] then proceed to call suggest_outfit.
+
+**Step 2**: Now, call suggest_outfit with inputs taken from tool 1 and user wardrobe. Once it runs, check if the result is empty or if no outfit can be suggested, and if true, set an error message in this session and return to the user saying, "I found a listing but couldn't pair it with your wardrobe, try searching for another fit or add more items to your wardrobe." If no, proceed to calling create_fit_card. 
+
+**Step 3**: Check the result of create_fit_card and if it is empty or if it's incomplete, agent should put an error message for this session and return back to user saying, "I don't have enough information to create a fit card, you can add more to your wardrobe or change your inital thrift fit, but here's the fit information you asked." If it succeeds, agent now creates a string message to the user saying they found the fit user is looking for and tells how to match it with their existing wardrobe while also giving a nice caption that it produced from tool 3. With this final string, it knows it's job is done. 
 
 ---
 
