@@ -16,18 +16,22 @@ You must have at least 3 tools. The three required tools are listed — add any 
 
 **What it does:**
 <!-- Describe what this tool does in 1–2 sentences -->
+It searches the listings json file for the clothes user has asked, and if it exists in the listings, the output of this tool is given to suggest_outfit tool, otherwise it returns nothing. 
 
 **Input parameters:**
 <!-- List each parameter, its type, and what it represents -->
-- `description` (str): ...
-- `size` (str): ...
-- `max_price` (float): ...
+- `description` (str): the outfit user wants is described here
+- `size` (str): what size does the user want like ('S', 'M', 'L', 'XL')
+- `max_price` (float): The maximum price that user wants their clothes to be, they will not accept any clothes above this value.
 
 **What it returns:**
 <!-- Describe the return value — what fields does a result contain? -->
+Returns top k matching listings sorted by relevance. 
+Fields - "Fit that user asked", price of that fit and the condition it's in.   
 
 **What happens if it fails or returns nothing:**
 <!-- What should the agent do if no listings match? -->
+If tool 1 doesn't return anything the user asks for, then agent suggests user to try something different and stops, it will not go for the next tool
 
 ---
 
