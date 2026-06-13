@@ -39,17 +39,20 @@ If tool 1 doesn't return anything the user asks for, then agent suggests user to
 
 **What it does:**
 <!-- Describe what this tool does in 1–2 sentences -->
+It takes the output of tool 1, along with the wardrobe schema file, to identify how the listings outfit would match with existing wardrobe, and if it does, it gives user what outfits they should wear with the listing one, with some styling advice.  
 
 **Input parameters:**
 <!-- List each parameter, its type, and what it represents -->
-- `new_item` (dict): ...
-- `wardrobe` (dict): ...
+- `new_item` (dict): This is a dictionary that has the fit user has asked, the price of it and also what coniditon it is in, basically the output of tool 1
+- `wardrobe` (dict): This one is a dictionary from the wardrobe schema file, which includes all of the items (id, name, category, colors, style_tag, notes) for best match with listings outfit and to give the user best outfit match. 
 
 **What it returns:**
 <!-- Describe the return value -->
+It returns a string that describes which wardrobe outfit to pair with the one listings has returned, while giving styling advice. 
 
 **What happens if it fails or returns nothing:**
 <!-- What should the agent do if the wardrobe is empty or no outfit can be suggested? -->
+If nothing can be suggested, instead of going to the next tool, the agent should say there's no good suggestion or that wardrobe is empty, and tell the user appropriate message depending on the case - either to add their wardrobe or suggesting them to find a different outfit. 
 
 ---
 
