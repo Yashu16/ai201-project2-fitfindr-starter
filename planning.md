@@ -60,16 +60,20 @@ If nothing can be suggested, instead of going to the next tool, the agent should
 
 **What it does:**
 <!-- Describe what this tool does in 1–2 sentences -->
+It looks at the suggested outfit and the outfit it took from listings to give a caption that will talk about how well the thrift fit fits the user while also mentioning any good qualities about it - be it either the price or the quality. 
 
 **Input parameters:**
 <!-- List each parameter, its type, and what it represents -->
-- `outfit` (...): ...
+- `outfit` (str): This input is taken from tool 2, and it has the required information for the agent to print out a caption from it
+- `new_item` (dict): This is the output from too 1, containing information regarding the thrift fit, it's price and the condition it's in. 
 
 **What it returns:**
 <!-- Describe the return value -->
+Using above input parameters, it would return a string that will complement thrift fit with the user while talking about any good qualities about it. 
 
 **What happens if it fails or returns nothing:**
 <!-- What should the agent do if the outfit data is incomplete? -->
+Agent should tell the user that it doesn't have enough information about the outfit to suggest a good caption, and tell user to either add more wardrobe data or try searching for a different fit in the thrift. 
 
 ---
 
